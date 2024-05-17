@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copy to Clipboard</title>
+</head>
+<body>
+    <script>
+        function copyText() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const textToCopy = urlParams.get('id');
+            if (textToCopy) {
+                navigator.clipboard.writeText(textToCopy).then(function() {
+                    alert('Copied to clipboard: ' + textToCopy);
+                    window.close();
+                }, function(err) {
+                    console.error('Failed to copy text: ', err);
+                });
+            } else {
+                alert('No text to copy!');
+                window.close();
+            }
+        }
+        copyText();
+    </script>
+</body>
+</html>
